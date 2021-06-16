@@ -99,4 +99,4 @@ const orderSchema = new mongoose.Schema(
 
 const Order = mongoose.model('Order', orderSchema)
 
-export default User
+export default Order
