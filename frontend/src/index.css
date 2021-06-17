@@ -19,3 +19,7 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
+
+.navbar-nav {
+  margin-left: auto;
+}
