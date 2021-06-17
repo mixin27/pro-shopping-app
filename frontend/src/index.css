@@ -23,3 +23,11 @@ h3 {
 .navbar-nav {
   margin-left: auto;
 }
+
+.text-link {
+  text-decoration: none;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
