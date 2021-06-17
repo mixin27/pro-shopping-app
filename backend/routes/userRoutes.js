@@ -10,6 +10,7 @@ import {
   getUserProfile,
   updateUserProfile,
   getUsers,
+  deleteUser,
 } from '../controllers/userController.js'
 
 const router = express.Router()
@@ -20,5 +21,6 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
 router.route('/').post(registerUser).get(protect, admin, getUsers)
+router.route('/:id').delete(protect, admin, deleteUser)
 
 export default router
