@@ -16,11 +16,12 @@ const ProfileScreen = ({ location, history }) => {
   const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch()
-  const userDetails = useSelector((state) => state.userDetails)
-  const { loading, error, user } = userDetails
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading, error, user } = userDetails
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
@@ -31,14 +32,14 @@ const ProfileScreen = ({ location, history }) => {
   useEffect(() => {
     if (!userInfo) {
       history.push('/')
-    }
-
-    if (!user.name) {
-      dispatch(getUserDetails('profile'))
-      dispatch(getMyOrders())
     } else {
-      setName(user.name)
-      setEmail(user.email)
+      if (!user.name) {
+        dispatch(getUserDetails('profile'))
+        dispatch(getMyOrders())
+      } else {
+        setName(user.name)
+        setEmail(user.email)
+      }
     }
   }, [dispatch, history, userInfo, user])
 
