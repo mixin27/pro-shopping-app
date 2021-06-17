@@ -36,7 +36,7 @@ const LoginScreen = ({ location, history }) => {
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Form.Group>
+        <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
           <Form.Control
             type='email'
@@ -45,7 +45,7 @@ const LoginScreen = ({ location, history }) => {
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group>
+        <Form.Group controlId='password'>
           <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
@@ -55,11 +55,9 @@ const LoginScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group className='py-3'>
-          <Button type='submit' variant='primary'>
-            Login
-          </Button>
-        </Form.Group>
+        <Button type='submit' variant='primary' className='mp-3'>
+          Login
+        </Button>
       </Form>
       <Row className='py-3'>
         <Col>
