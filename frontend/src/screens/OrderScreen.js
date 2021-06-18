@@ -38,23 +38,6 @@ const OrderScreen = ({ match }) => {
     )
   }
 
-  /** Stripe */
-  const handleStripePayment = async (e) => {
-    e.preventDefault()
-
-    /** just add sample data */
-    dispatch(
-      payOrder(orderId, {
-        id: `payment_id_${new Date().toISOString()}`,
-        status: 'COMPLETED',
-        update_time: new Date(),
-        payer: {
-          email_address: 'sb-sw9293j39dks@example.com',
-        },
-      })
-    )
-  }
-
   useEffect(() => {
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal')
@@ -102,6 +85,23 @@ const OrderScreen = ({ match }) => {
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
+  }
+
+  /** Stripe */
+  const handleStripePayment = async (e) => {
+    e.preventDefault()
+
+    /** just add sample data */
+    dispatch(
+      payOrder(orderId, {
+        id: `payment_id_${new Date().toISOString()}`,
+        status: 'COMPLETED',
+        update_time: new Date(),
+        payer: {
+          email_address: 'sb-sw9293j39dks@example.com',
+        },
+      })
+    )
   }
 
   return loading ? (
