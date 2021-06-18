@@ -40,6 +40,7 @@ const App = () => {
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/login' component={LoginScreen} />
+          <Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/' component={HomeScreen} exact />
         </Container>
       </main>
