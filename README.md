@@ -4,6 +4,8 @@ A pratical shopping app using node, react and react-bootstrap.
 
 This project is just practicing the udemy course ([MERN eCommerce From Scratch](https://www.udemy.com/course/mern-ecommerce/))
 
+Live Demo - [here](https://zattshop.herokuapp.com/)
+
 ## How To
 
 1. You need to clone this repository using this command
