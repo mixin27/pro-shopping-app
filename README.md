@@ -20,7 +20,6 @@ Live Demo - [here](https://zattshop.herokuapp.com/)
    MONGO_URI = your_mongodb_uri
    JWT_SECRET = your_jwt_secret_key
    PAYPAL_CLIENT_ID = your_paypal_client_id
-   STRIPE_KEY = your_stripe_secret_key
    ```
 
 3. Next, seed the sample data using the following command
@@ -36,9 +35,6 @@ Live Demo - [here](https://zattshop.herokuapp.com/)
    `http://locahost:<your_port>/`
 
 ## Note
-
-- `Stripe` payment is currently implemented as a demo.
-- `PayPal` does not support `Myanmar` so I can't implement this payment method well.
 
 - Import - `npm run data:import`
 - Destroy - `npm run data:destroy`
