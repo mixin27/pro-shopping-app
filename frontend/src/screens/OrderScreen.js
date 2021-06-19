@@ -17,10 +17,6 @@ import {
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants'
 
-// const stripePromise = loadStripe(
-//   'pk_test_51IysjXGuFTCxSSwSfV4rHuBrPfbhqDIXdbZwxADpsreh7HIp9yOvqQsaGYcOqdtqG4LkRarUhwDZ7QfK12ryJ60J00IXYroF9Z'
-// )
-
 const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id
 
@@ -68,32 +64,15 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    const addStripeScript = async () => {
-      setSdkReady(true)
-      // const { data: stripe } = await axios.get('/api/config/stripe')
-      // const script = document.createElement('script')
-      // script.type = 'text/javascript'
-      // script.src = `https://www.js.stripe.com/v3/`
-      // script.async = true
-      // script.onload = () => {
-      //   setSdkReady(true)
-      // }
-      // document.body.appendChild(script)
-    }
-
     if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch({ type: ORDER_DELIVER_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
-      if (order.paymentMethod === 'PayPal') {
-        if (!window.paypal) {
-          addPayPalScript()
-        } else {
-          setSdkReady(true)
-        }
-      } else if (order.paymentMethod === 'Stripe') {
-        addStripeScript()
+      if (!window.paypal) {
+        addPayPalScript()
+      } else {
+        setSdkReady(true)
       }
     }
   }, [dispatch, history, orderId, successPay, successDeliver, order, userInfo])
@@ -101,23 +80,6 @@ const OrderScreen = ({ match, history }) => {
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
-  }
-
-  /** Stripe */
-  const handleStripePayment = async (e) => {
-    e.preventDefault()
-
-    /** just add sample data */
-    dispatch(
-      payOrder(orderId, {
-        id: `payment_id_${new Date().toISOString()}`,
-        status: 'COMPLETED',
-        update_time: new Date(),
-        payer: {
-          email_address: 'sb-sw9293j39dks@example.com',
-        },
-      })
-    )
   }
 
   const deliverHandler = () => {
@@ -242,15 +204,11 @@ const OrderScreen = ({ match, history }) => {
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
                     <Loader />
-                  ) : order.paymentMethod === 'PayPal' ? (
+                  ) : (
                     <PayPalButton
                       amount={order.totalPrice}
                       onSucess={successPaymentHandler}
                     />
-                  ) : (
-                    <Button type='button' onClick={handleStripePayment}>
-                      Pay With Stripe
-                    </Button>
                   )}
                 </ListGroup.Item>
               )}
