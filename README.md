@@ -15,7 +15,7 @@ Live Demo - [here](https://zattshop.herokuapp.com/)
 2. Then, create `.env` file under the project `root` directory and add the following and save.
 
    ```js
-   NODE_ENV = production or development
+   NODE_ENV = production | development
    PORT = your_port_number
    MONGO_URI = your_mongodb_uri
    JWT_SECRET = your_jwt_secret_key
@@ -32,7 +32,7 @@ Live Demo - [here](https://zattshop.herokuapp.com/)
 
 5. Then, you can test the app on your browser by typing
 
-   `http://locahost:<your_port>/`
+   `http://localhost:<your_port>/`
 
 ## Note
 
